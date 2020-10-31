@@ -43,7 +43,8 @@ def main():
                         items = tline.strip().split()
                         texts[items[0]] = " ".join(items[1:])
                 transcriptions[dir] = texts
-            part = os.path.basename(line).split(".")[0]
+            part = os.path.basename(line) #.split(".")[0]
+            part = str(part.encode('utf8')).replace("b'",'').split('\\t')[0]
             assert part in transcriptions[dir]
             print(transcriptions[dir][part], file=wrd_out)
             print(
